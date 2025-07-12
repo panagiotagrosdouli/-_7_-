@@ -25,7 +25,11 @@
 
 | Αρχείο | Περιγραφή |
 |--------|-----------|
-| `εργασια7.ipynb` | Ενιαίο Jupyter notebook με όλο τον κώδικα |
+| `1d_caipynb.py` | 1CA CODE |
+| `3d_caipynb(1).py` | 3CA CODE |
+| `3d_περίπτωση_1caipynb.py` | 3CA CODE 
+| `3d_περίπτωση_2caipynb.py` | 3CA CODE 
+| `3d_περίπτωση_3caipynb.py` | 3CA CODE 
 | `report.pdf` | Αναφορά με τεκμηρίωση, αποτελέσματα και ανάλυση |
 | `README.md` | Τεχνική περιγραφή έργου |
 
