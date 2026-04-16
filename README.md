@@ -4,261 +4,177 @@
 <h3>A Parametric Framework for Multi-Dimensional Cellular Automata Simulation</h3>
 
 <p>
-  <img src="https://img.shields.io/badge/Python-3.x-blue?style=flat-square&logo=python" />
-  <img src="https://img.shields.io/badge/Dimensions-1D%20%7C%202D%20%7C%203D-purple?style=flat-square" />
-  <img src="https://img.shields.io/badge/Visualization-matplotlib-orange?style=flat-square" />
-  <img src="https://img.shields.io/badge/GUI-tkinter-green?style=flat-square" />
-  <img src="https://img.shields.io/badge/License-Academic-lightgrey?style=flat-square" />
+  <img src="https://img.shields.io/badge/Python-3.x-3776AB?style=for-the-badge&logo=python&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Dimensions-1D · 2D · 3D-7B2FBE?style=for-the-badge"/>
+  <img src="https://img.shields.io/badge/GUI-tkinter-2E8B57?style=for-the-badge"/>
+  <img src="https://img.shields.io/badge/Viz-matplotlib-E07B00?style=for-the-badge"/>
 </p>
 
-<p>
-  <em>
-    A fully parametric, interactive simulation engine for exploring emergent complexity<br>
-    in one-, two-, and three-dimensional cellular automata.
-  </em>
-</p>
+<p><em>
+A fully parametric, interactive simulation engine for exploring emergent complexity<br>
+across one-, two-, and three-dimensional Cellular Automata.
+</em></p>
 
 </div>
 
 ---
 
-## 📖 Overview
+## Overview
 
-**CASim** is a research-oriented software framework for the design, execution, and visual analysis of **Cellular Automata (CA)** across multiple spatial dimensions. The system supports user-defined parameters — including state count, grid size, evolution rules, thresholds, and neighbourhood topology — allowing systematic experimentation with complex self-organising systems.
-
-The project was developed as part of the course **"Analysis and Synthesis of Complex Electronic Systems"** (2024–2025) at the **Department of Electrical and Computer Engineering, Democritus University of Thrace (DUTH)**.
+**CASim** is a research-oriented Python framework for designing, executing, and visually analysing **Cellular Automata (CA)** across multiple spatial dimensions. Every aspect of the simulation — state count, grid size, evolution rule, neighbourhood topology, and boundary conditions — is exposed as a user-configurable parameter, enabling systematic exploration of complex self-organising systems.
 
 > *"Simple local rules. Global emergent complexity."*
-> — The fundamental principle of Cellular Automata theory.
+
+The project was developed as **Assignment 7** for the course *Analysis and Synthesis of Complex Electronic Systems* (2024–2025), Department of Electrical and Computer Engineering, Democritus University of Thrace.
 
 ---
 
-## 🔬 Research Motivation
-
-Cellular Automata have been a cornerstone of computational science since the pioneering work of von Neumann and Wolfram, demonstrating that discrete, deterministic systems with minimal rule sets can generate extraordinarily rich and unpredictable behaviour. From modelling biological pattern formation to simulating fluid dynamics and cryptographic applications, CA remain a powerful tool across disciplines.
-
-CASim addresses the need for a **generalised, accessible simulation platform** that allows researchers and students to:
-
-- Rapidly prototype CA configurations without hardware or language barriers
-- Visually explore the phase space of rule sets and dimensional configurations
-- Compare 1D Wolfram-style elementary automata with higher-dimensional threshold systems
-- Build intuition for **emergence, periodicity, and chaotic dynamics** in discrete systems
-
----
-
-## ✨ Key Features
-
-| Feature | Description |
-|---|---|
-| **Multi-dimensional support** | Simulate CA in 1D, 2D, and 3D on a unified parametric engine |
-| **Configurable state spaces** | Define any number of discrete cell states (binary, ternary, k-ary) |
-| **Rule flexibility** | Wolfram-style decimal rule codes (1D) or threshold-based activation (2D/3D) |
-| **Neighbourhood topology** | Choose Moore or Von Neumann neighbourhood (2D); configurable radius in 3D |
-| **Periodic boundary conditions** | Toroidal (wrap-around) grid topology for finite-size artefact elimination |
-| **Interactive GUI** | Parameter input via `tkinter` — no command-line expertise required |
-| **Real-time visualisation** | Generation-by-generation animation powered by `matplotlib` |
-| **Generational history** | Full evolution history stored in memory for post-hoc analysis |
-
----
-
-## 🗂️ Repository Structure
+## Repository Structure
 
 ```
 CASim/
 │
-├── 1d_caipynb.py                  # 1D Cellular Automaton engine (Wolfram-style rules)
-├── 3d_caipynb.py                  # 3D Cellular Automaton — general implementation
-├── 3d_caipynb (1).py              # 3D CA — extended variant
-├── 3d__περιπτωση_1ca.py           # 3D CA — Case Study 1 (threshold-based)
-├── 3d__περιπτωση_2ca.py           # 3D CA — Case Study 2 (multi-state)
-├── 3d__περιπτωση_3ca.py           # 3D CA — Case Study 3 (periodic emergence)
-├── report.pdf                     # Full technical report with results and analysis
-└── README.md                      # This file
+├── 1d_caipynb.py            # 1D CA — Wolfram elementary rules, GUI, space-time heatmap
+├── 3d_caipynb.py            # 3D CA — general threshold-based engine
+├── 3d__case_1ca.py          # Case Study 1 — Birth/Survival (B/S) rule system
+├── 3d__case_2ca.py          # Case Study 2 — Multi-state ageing + Shannon entropy
+├── 3d__case_3ca.py          # Case Study 3 — Period detection + Wolfram classification
+├── 3d_caipynb_extended.py   # Extended — configurable radius + rule-space phase diagram
+├── report.pdf               # Full technical report with results and analysis
+└── README.md
 ```
 
 ---
 
-## ⚙️ Technical Specifications
+## Modules
 
-### Dependencies
+### `1d_caipynb.py` — 1D Wolfram Automaton
 
-```bash
-pip install numpy matplotlib
-```
+Implements the classical Wolfram elementary CA. A decimal rule number is decoded into a neighbourhood → next-state lookup table; the full space-time evolution is rendered as a 2D heatmap.
 
-> `tkinter` is included in the Python standard library and requires no separate installation.
-
-| Library | Role |
+| Parameter | Description |
 |---|---|
-| `numpy` | Grid state representation and vectorised evolution computation |
-| `matplotlib` | 2D/3D visualisation and animation of CA generations |
-| `tkinter` | Cross-platform graphical user interface for parameter input |
+| Grid size | Number of cells |
+| Generations | Time steps to simulate |
+| Rule number | Wolfram rule (e.g. 30, 90, 110) |
+| States (k) | Binary, ternary, or k-ary |
+| Initial condition | Single seed or random |
 
-### System Requirements
-
-- Python 3.7 or higher
-- Works on Windows, macOS, and Linux
-- Compatible with Google Colab (headless mode, matplotlib inline)
+Notable rules: **Rule 30** (chaos), **Rule 90** (Sierpiński fractal), **Rule 110** (Turing-complete).
 
 ---
 
-## 🚀 Getting Started
+### `3d_caipynb.py` — 3D General Engine
 
-### 1. Clone the repository
-
-```bash
-git clone https://github.com/PanagiotaGr/CASim-A-Parametric-Framework-for-Multi-Dimensional-Cellular-Automata-Simulation.git
-cd CASim-A-Parametric-Framework-for-Multi-Dimensional-Cellular-Automata-Simulation
-```
-
-### 2. Install dependencies
-
-```bash
-pip install numpy matplotlib
-```
-
-### 3. Run a simulation
-
-**1D Cellular Automaton:**
-```bash
-python 1d_caipynb.py
-```
-
-**3D Cellular Automaton:**
-```bash
-python 3d_caipynb.py
-```
-
-### 4. Configure via GUI
-
-Upon launch, a graphical interface will prompt you to specify:
-
-- Number of **cell states** (e.g., 2 for binary, 3 for ternary)
-- **Grid size** (number of cells per dimension)
-- **Number of generations** to simulate
-- **Evolution rule** (decimal code for 1D) or **threshold** (for 2D/3D)
-- **Neighbourhood type** (Moore / Von Neumann — 2D only)
+Threshold-based 3D CA where live cells age through states `1 → 2 → … → k → 0`. A dead cell is born when its active-neighbour count equals the threshold exactly. Visualised as a real-time 3D scatter animation or orthogonal cross-section slices (XY / XZ / YZ).
 
 ---
 
-## 🧪 Simulation Design
+### `3d__case_1ca.py` — Case Study 1: Birth/Survival Rules
 
-### 1D — Wolfram Elementary Automata
+Extends the engine with the **B/S notation** familiar from Conway's Game of Life, generalised to 3D:
 
-The 1D engine implements the classical Wolfram rule system. A rule number (0–255 for binary states) is decoded into a lookup table mapping every 3-cell neighbourhood pattern to a next-generation state. The full space-time evolution is rendered as a 2D heatmap using `plt.imshow()`.
+- A **dead** cell is **born** when its active-neighbour count ∈ B  
+- A **live** cell **survives** when its active-neighbour count ∈ S
 
-```
-Rule 30  →  Chaotic, pseudo-random patterns (used in Mathematica's RNG)
-Rule 90  →  Sierpiński triangle fractal
-Rule 110 →  Turing-complete behaviour (proven by Matthew Cook, 2004)
-```
+Includes four ready-to-run presets:
 
-### 2D & 3D — Threshold-Based Activation
-
-For higher-dimensional CA, cell state transitions are governed by a configurable **threshold `τ`**:
-
-```
-next_state(cell) = f( Σ active_neighbours, τ )
-```
-
-Boundary conditions are **periodic (toroidal)**, ensuring that every cell has a symmetric neighbourhood without edge effects. Visualisation proceeds frame-by-frame, rendering each generation in real time.
-
----
-
-## 📊 Experimental Results
-
-### Experiment 1 — 1D Binary CA, Rule 30
-
-| Parameter | Value |
-|---|---|
-| States | 2 |
-| Grid size | 20 |
-| Generations | 20 |
-| Rule | 30 |
-
-**Result:** Highly non-linear, chaotic space-time pattern. No periodicity detected within the observed window. Consistent with Rule 30's Class III (chaotic) Wolfram classification.
-
----
-
-### Experiment 2 — 3D Ternary CA, Threshold 5
-
-| Parameter | Value |
-|---|---|
-| States | 3 |
-| Grid size | 30 × 30 × 30 |
-| Generations | 100 |
-| Threshold | 5 |
-
-**Result:** Self-organised spatial clustering emerges within the first 20 generations, followed by periodic structural oscillation. Demonstrates spontaneous symmetry breaking in a homogeneous initial condition.
-
----
-
-## 🔭 Theoretical Background
-
-### What are Cellular Automata?
-
-A Cellular Automaton is a discrete computational model defined by:
-
-- A **regular grid** of cells, each in one of *k* finite states
-- A **neighbourhood** function mapping each cell to its local context
-- A **transition rule** applied synchronously to all cells at each time step
-
-Despite their simplicity, CA can exhibit the full range of Wolfram's four complexity classes:
-
-| Class | Behaviour | Example Rule |
+| Preset | Rule | Behaviour |
 |---|---|---|
-| I | Fixed-point convergence | Rule 0 |
+| Conway 3D | B5,6,7 / S4,5,6,7 | Self-sustaining blobs |
+| Amoeba | B3,5,6,7,8 / S5,6,7,8 | Expanding clusters |
+| Crystals | B1,3 / S2 | Dendritic growth |
+| Stable Fog | B4,6,8 / S3,6,9 | Persistent diffuse cloud |
+
+---
+
+### `3d__case_2ca.py` — Case Study 2: Multi-State Ageing
+
+k-ary CA modelling **excitable media** (e.g. cardiac signal propagation, reaction-diffusion). Birth is controlled by an activity-sum window `[τ_min, τ_max]`. Includes:
+
+- Per-generation **Shannon entropy** H(t) = −Σ pᵢ log₂ pᵢ
+- Stacked area chart of the state distribution over time
+- Entropy vs. maximum-entropy reference plot
+
+---
+
+### `3d__case_3ca.py` — Case Study 3: Periodic Emergence
+
+Range-rule CA (`τ_low ≤ n ≤ τ_high`) with automated diagnostics:
+
+- **Period detection** — identifies oscillators by comparing grid snapshots
+- **Wolfram classification** (Classes I–IV) inferred from entropy and population variance
+- **Diagnostic dashboard** — four-panel figure (population, entropy, two cross-section slices)
+
+---
+
+### `3d_caipynb_extended.py` — Extended: Radius & Rule Sweep
+
+Two capabilities beyond the standard engine:
+
+1. **Configurable neighbourhood radius r** — Moore neighbourhood expands from 26 cells (r=1) to 124 (r=2), 342 (r=3)
+2. **Automated rule sweep** — sweeps all threshold values, records steady-state active fraction and entropy, and plots the **phase diagram** to locate order–chaos phase transitions
+
+---
+
+## Installation
+
+```bash
+pip install numpy matplotlib scipy
+```
+
+`tkinter` is included in the Python standard library. **Python 3.7+** · Windows / macOS / Linux / Google Colab.
+
+---
+
+## Quick Start
+
+```bash
+python 1d_caipynb.py           # 1D Wolfram automaton
+python 3d_caipynb.py           # 3D general engine
+python 3d__case_1ca.py         # Case Study 1 — B/S rules
+python 3d__case_2ca.py         # Case Study 2 — entropy analysis
+python 3d__case_3ca.py         # Case Study 3 — period detection
+python 3d_caipynb_extended.py  # Extended — radius + phase diagram
+```
+
+Each script opens a GUI — configure parameters and press **Run**.
+
+---
+
+## Theoretical Background
+
+A Cellular Automaton is defined by a regular grid of cells updated synchronously via a local transition rule. Despite this simplicity, CA exhibit Wolfram's four complexity classes:
+
+| Class | Behaviour | Example |
+|---|---|---|
+| I | Converges to fixed point | Rule 0 |
 | II | Periodic / stable structures | Rule 4 |
-| III | Chaotic, aperiodic patterns | Rule 30 |
+| III | Chaotic, aperiodic | Rule 30 |
 | IV | Complex, localised structures | Rule 110 |
 
-### Why Multi-Dimensional CA?
-
-Extending CA beyond 1D dramatically expands the emergent behaviour space. In 2D, John Conway's *Game of Life* demonstrated that threshold rules over Moore neighbourhoods can produce self-replicating structures and universal computation. In 3D, CA serve as models for crystalline growth, tumour dynamics, and reaction-diffusion systems.
+Extending to 3D enables modelling of physical phenomena: crystal growth, neural excitation waves, tumour dynamics, and reaction-diffusion chemistry.
 
 ---
 
-## 🛣️ Future Work
-
-The following extensions are planned or proposed for future research iterations:
-
-- **Object-Oriented Refactoring** — Redesign the CA modules using OOP principles (`CAEngine`, `Grid`, `Rule`, `Visualiser` classes) for modularity and extensibility
-- **4D Cellular Automata** — Extend the framework to support temporal CA with a fourth spatial dimension
-- **Complexity Metrics** — Integrate quantitative analysis tools: Shannon entropy per generation, Lyapunov exponent estimation, and fractal dimension measurement
-- **Machine Learning Integration** — Apply unsupervised learning (clustering, autoencoders) to identify and classify emergent patterns automatically
-- **Rule Space Exploration** — Implement automated sweeping of rule/threshold parameter spaces with behaviour classification
-- **GPU Acceleration** — Leverage CUDA or JAX for large-scale 3D simulations beyond CPU feasibility
-
----
-
-## 📄 References
+## References
 
 1. Wolfram, S. (2002). *A New Kind of Science*. Wolfram Media.
 2. von Neumann, J. (1966). *Theory of Self-Reproducing Automata*. University of Illinois Press.
-3. Gardner, M. (1970). Mathematical Games: The fantastic combinations of John Conway's new solitaire game "life". *Scientific American*, 223(4), 120–123.
-4. Cook, M. (2004). Universality in elementary cellular automata. *Complex Systems*, 15(1), 1–40.
-5. Sarkar, P. (2000). A brief history of cellular automata. *ACM Computing Surveys*, 32(1), 80–107.
-6. IEEE Xplore — *Programmable Cellular Automata Based Encryption Algorithm* (course reference).
+3. Gardner, M. (1970). Mathematical Games: Conway's Game of Life. *Scientific American*, 223(4).
+4. Cook, M. (2004). Universality in elementary cellular automata. *Complex Systems*, 15(1).
+5. Sarkar, P. (2000). A brief history of cellular automata. *ACM Computing Surveys*, 32(1).
 
 ---
 
-## 👩‍💻 Author
+## Author
 
-**Panagiota Grosdouli**
-Department of Electrical and Computer Engineering
-Democritus University of Thrace (DUTH), Greece
-Student ID: 58523
-
-*Course: Analysis and Synthesis of Complex Electronic Systems — Assignment 7, June 2025*
-
----
-
-## 📜 License
-
-This project was developed for academic purposes as part of a university course assignment. All rights reserved by the author. For use, citation, or adaptation, please contact the author directly.
+**Panagiota Grosdouli** · Student ID 58523  
+Department of Electrical and Computer Engineering, Democritus University of Thrace (DUTH)  
+*Analysis and Synthesis of Complex Electronic Systems — Assignment 7, June 2025*
 
 ---
 
 <div align="center">
-<sub>Built with 🧠 curiosity and ⚡ Python · Democritus University of Thrace · 2025</sub>
+<sub>Built with Python · Democritus University of Thrace · 2025</sub>
 </div>
